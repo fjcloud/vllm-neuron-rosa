@@ -84,20 +84,22 @@ A dummy `model.safetensors` (161 bytes) in the HuggingFace repo satisfies `trans
 ### 1. Install operators (one-time)
 
 ```bash
-oc apply -k https://github.com/fjcloud/vllm-neuron-rosa/deploy/prereqs
+# Step 1: Install operators
+oc apply -k https://github.com/fjcloud/vllm-neuron-rosa/deploy/prereqs/operators
+
+# Step 2: Wait for operators to be ready
+oc get csv -n openshift-nfd -w   # wait for Succeeded
+oc get csv -n openshift-kmm -w   # wait for Succeeded
+oc get pods -n ai-operator-on-aws # wait for neuron-scheduler Running
+
+# Step 3: Create operator instances (requires CRDs from step 1)
+oc apply -k https://github.com/fjcloud/vllm-neuron-rosa/deploy/prereqs/instances
 ```
 
 This installs:
 - **NFD Operator** + instance + Neuron PCI rule
 - **KMM Operator** (Kernel Module Management)
 - **AWS Neuron Operator** (device plugin, scheduler, metrics)
-
-Wait for all operators to be ready:
-```bash
-oc get csv -n openshift-nfd
-oc get csv -n openshift-kmm
-oc get pods -n ai-operator-on-aws
-```
 
 ### 2. Create namespace
 
@@ -212,7 +214,10 @@ Compiled with: `tp=2, max_model_len=4096, max_num_seqs=4, block_size=32, save_sh
     ├── service.yaml
     ├── route.yaml                     # HTTPS edge, 300s timeout
     └── prereqs/
-        ├── kustomization.yaml         # Operator prerequisites
+        ├── operators/
+        │   └── kustomization.yaml     # Step 1: OLM subscriptions (NFD, KMM, Neuron)
+        ├── instances/
+        │   └── kustomization.yaml     # Step 2: CRs (NFD instance + Neuron PCI rule)
         ├── nfd-*.yaml                 # NFD Operator + instance + rule
         ├── kmm-*.yaml                 # KMM Operator
         └── neuron-*.yaml              # AWS Neuron Operator
