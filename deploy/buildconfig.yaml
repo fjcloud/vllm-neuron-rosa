@@ -1,0 +1,23 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: vllm-neuron
+  labels:
+    app: vllm-neuron
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/fjcloud/vllm-neuron-rosa.git
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: vllm-neuron:latest
+  resources:
+    limits:
+      memory: 4Gi

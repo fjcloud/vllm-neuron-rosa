@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-neuron
+  labels:
+    app: vllm-neuron
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"vllm-neuron:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"vllm\")].image"}]
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-neuron
+  template:
+    metadata:
+      labels:
+        app: vllm-neuron
+    spec:
+      schedulerName: neuron-scheduler
+      nodeSelector:
+        node.kubernetes.io/instance-type: inf2.xlarge
+      containers:
+      - name: vllm
+        image: vllm-neuron:latest
+        args:
+        - "--max-model-len"
+        - "4096"
+        - "--tensor-parallel-size"
+        - "2"
+        - "--max-num-seqs"
+        - "4"
+        - "--block-size"
+        - "32"
+        - "--num-gpu-blocks-override"
+        - "4"
+        - "--no-enable-prefix-caching"
+        - "--additional-config"
+        - '{"override_neuron_config": {"save_sharded_checkpoint": true}}'
+        env:
+        - name: HF_MODEL_ID
+          value: fjcloud/Mistral-7B-Instruct-v0.3-neuron-inf2-tp2
+        - name: HF_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: hf-token
+              key: token
+        - name: HF_HOME
+          value: /cache
+        - name: HF_HUB_DISABLE_XET
+          value: "1"
+        - name: NEURON_CC_FLAGS
+          value: "--auto-cast=matmul --auto-cast-type=bf16 -O1"
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        volumeMounts:
+        - name: cache-vol
+          mountPath: /cache
+        resources:
+          requests:
+            aws.amazon.com/neuron: "1"
+            memory: 6Gi
+          limits:
+            aws.amazon.com/neuron: "1"
+            memory: 14Gi
+      volumes:
+      - name: cache-vol
+        persistentVolumeClaim:
+          claimName: vllm-neuron-cache
