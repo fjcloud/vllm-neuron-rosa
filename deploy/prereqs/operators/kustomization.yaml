@@ -3,15 +3,15 @@ kind: Kustomization
 
 resources:
   # NFD Operator
-  - ../nfd-namespace.yaml
-  - ../nfd-operatorgroup.yaml
-  - ../nfd-subscription.yaml
+  - nfd-namespace.yaml
+  - nfd-operatorgroup.yaml
+  - nfd-subscription.yaml
   # KMM Operator
-  - ../kmm-namespace.yaml
-  - ../kmm-operatorgroup.yaml
-  - ../kmm-subscription.yaml
+  - kmm-namespace.yaml
+  - kmm-operatorgroup.yaml
+  - kmm-subscription.yaml
   # AWS Neuron Operator
-  - ../neuron-namespace.yaml
-  - ../neuron-operatorgroup.yaml
-  - ../neuron-catalogsource.yaml
-  - ../neuron-subscription.yaml
+  - neuron-namespace.yaml
+  - neuron-operatorgroup.yaml
+  - neuron-catalogsource.yaml
+  - neuron-subscription.yaml
