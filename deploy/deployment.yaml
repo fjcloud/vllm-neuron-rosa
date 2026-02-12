@@ -9,6 +9,8 @@ metadata:
       [{"from":{"kind":"ImageStreamTag","name":"vllm-neuron:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"vllm\")].image"}]
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: vllm-neuron
