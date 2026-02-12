@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - nfd-instance.yaml
   - nfd-rule.yaml
+  - neuron-deviceconfig.yaml
