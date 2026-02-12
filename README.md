@@ -64,7 +64,7 @@ A dummy `model.safetensors` (161 bytes) in the HuggingFace repo satisfies `trans
 |-----------|---------|-------|
 | OpenShift / ROSA | 4.17+ | Tested on ROSA HCP |
 | Node instance | `inf2.xlarge` or `inf2.8xlarge` | 1 Neuron device, 2 NeuronCores, 32 GB HBM |
-| HuggingFace token | — | For gated models (Mistral, Llama) |
+| HuggingFace token | — | Only for gated base models (not needed for pre-compiled repo) |
 
 ### Instance sizing
 
@@ -99,15 +99,15 @@ oc get csv -n openshift-kmm
 oc get pods -n ai-operator-on-aws
 ```
 
-### 2. Create namespace and HuggingFace secret
+### 2. Create namespace
 
 ```bash
 oc new-project neuron-inference
-
-oc create secret generic hf-token \
-  --from-literal=token=hf_YOUR_TOKEN_HERE \
-  -n neuron-inference
 ```
+
+> **Note:** If using a gated model (e.g. `mistralai/Mistral-7B-Instruct-v0.3`), create a HF token secret:
+> `oc create secret generic hf-token --from-literal=token=hf_YOUR_TOKEN -n neuron-inference`
+> and add `HF_TOKEN` env var to the deployment.
 
 ### 3. Deploy
 

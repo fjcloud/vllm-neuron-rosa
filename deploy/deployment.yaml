@@ -42,11 +42,6 @@ spec:
         env:
         - name: HF_MODEL_ID
           value: fjcloud/Mistral-7B-Instruct-v0.3-neuron-inf2-tp2
-        - name: HF_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: hf-token
-              key: token
         - name: HF_HOME
           value: /cache
         - name: HF_HUB_DISABLE_XET
