@@ -1,0 +1,11 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: aws-neuron-operator-sub
+  namespace: ai-operator-on-aws
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: aws-neuron-operator
+  source: aws-neuron-operator
+  sourceNamespace: openshift-marketplace

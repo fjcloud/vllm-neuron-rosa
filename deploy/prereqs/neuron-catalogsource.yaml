@@ -1,0 +1,9 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: aws-neuron-operator
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: public.ecr.aws/os-partners/neuron-openshift/operator-index:v1.0.0
+  displayName: AWS Neuron Operator Catalog

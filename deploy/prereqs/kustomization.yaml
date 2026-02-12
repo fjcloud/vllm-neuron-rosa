@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  # ── 1. NFD Operator ──────────────────────────
+  - nfd-namespace.yaml
+  - nfd-operatorgroup.yaml
+  - nfd-subscription.yaml
+  - nfd-instance.yaml
+  - nfd-rule.yaml
+
+  # ── 2. KMM Operator ─────────────────────────
+  - kmm-namespace.yaml
+  - kmm-operatorgroup.yaml
+  - kmm-subscription.yaml
+
+  # ── 3. AWS Neuron Operator ───────────────────
+  - neuron-namespace.yaml
+  - neuron-operatorgroup.yaml
+  - neuron-catalogsource.yaml
+  - neuron-subscription.yaml
