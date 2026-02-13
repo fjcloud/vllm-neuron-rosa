@@ -1,6 +1,6 @@
 # vLLM on AWS Inferentia2 — OpenShift / ROSA
 
-Run pre-compiled LLMs on Inferentia2 with vLLM + Neuron SDK. No compilation needed.
+Run [Qwen3-8B](https://huggingface.co/fjcloud/Qwen3-8B-neuron-inf2-tp2) pre-compiled on Inferentia2 with vLLM + Neuron SDK. No compilation needed.
 
 ## Prerequisites
 
@@ -37,13 +37,13 @@ oc start-build vllm-neuron -n neuron-inference --follow
 ROUTE=$(oc get route vllm-neuron -n neuron-inference -o jsonpath='{.spec.host}')
 curl -sk "https://$ROUTE/v1/chat/completions" \
   -H "Content-Type: application/json" \
-  -d '{"model":"/cache/model","messages":[{"role":"user","content":"Hello"}],"max_tokens":50}'
+  -d '{"model":"/cache/model","messages":[{"role":"user","content":"Hello"}],"max_tokens":256}'
 ```
 
 ## What it does
 
 The `entrypoint.sh` handles everything at startup:
-1. Downloads the full HuggingFace repo to the PVC (including compiled artifacts)
+1. Downloads [fjcloud/Qwen3-8B-neuron-inf2-tp2](https://huggingface.co/fjcloud/Qwen3-8B-neuron-inf2-tp2) to the PVC (including pre-compiled Neuron artifacts)
 2. Sets `NEURON_COMPILED_ARTIFACTS` to bypass NxDI's config hash
 3. Launches vLLM pointing to the local model
 
