@@ -4,9 +4,14 @@ Run pre-compiled LLMs on Inferentia2 with vLLM + Neuron SDK. No compilation need
 
 ## Prerequisites
 
-- OpenShift / ROSA 4.17+
-- An `inf2.xlarge` (or larger) node
-- The pre-compiled model repo: [`fjcloud/Mistral-7B-Instruct-v0.3-neuron-inf2-tp2`](https://huggingface.co/fjcloud/Mistral-7B-Instruct-v0.3-neuron-inf2-tp2)
+- OpenShift / ROSA 4.17+ — deploy a cluster with [`fjcloud/rosa-quickstart`](https://github.com/fjcloud/rosa-quickstart)
+- An `inf2.xlarge` (or larger) node:
+  ```bash
+  rosa create machine-pool -c <cluster-name> \
+    --name neuron --replicas=1 \
+    --instance-type inf2.xlarge \
+    --availability-zone <az>
+  ```
 
 ## Deploy
 
