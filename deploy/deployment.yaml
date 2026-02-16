@@ -21,7 +21,7 @@ spec:
     spec:
       schedulerName: neuron-scheduler
       nodeSelector:
-        node.kubernetes.io/instance-type: inf2.xlarge
+        node.kubernetes.io/instance-type: inf2.8xlarge
       containers:
       - name: vllm
         image: vllm-neuron:latest
@@ -31,11 +31,7 @@ spec:
         - "--tensor-parallel-size"
         - "2"
         - "--max-num-seqs"
-        - "8"
-        - "--block-size"
-        - "32"
-        - "--num-gpu-blocks-override"
-        - "8"
+        - "1"
         - "--no-enable-prefix-caching"
         - "--additional-config"
         - '{"override_neuron_config": {"save_sharded_checkpoint": true}}'
