@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "neuron": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Qwen3-8B (Neuron)",
+      "options": {
+        "baseURL": "{env:VLLM_ENDPOINT}",
+        "apiKey": "dummy"
+      },
+      "models": {
+        "/cache/model": {
+          "name": "Qwen3-8B",
+          "limit": {
+            "context": 4096,
+            "output": 4096
+          }
+        }
+      }
+    }
+  },
+  "model": "neuron//cache/model",
+  "small_model": "neuron//cache/model",
+  "disabled_providers": ["openai", "anthropic", "google", "openrouter"],
+  "autoupdate": false
+}

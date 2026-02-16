@@ -1,0 +1,63 @@
+schemaVersion: 2.2.0
+metadata:
+  name: golang-ai
+  displayName: Go with AI Assistant (Qwen3-8B)
+  description: Go development workspace with OpenCode AI agent connected to Qwen3-8B on Neuron
+  tags:
+    - Go
+    - AI
+    - OpenCode
+  icon: https://raw.githubusercontent.com/devfile-samples/devfile-stack-icons/main/golang.svg
+  version: 1.0.0
+components:
+  - name: tools
+    container:
+      image: registry.access.redhat.com/ubi9/go-toolset:latest
+      memoryLimit: 2Gi
+      mountSources: true
+      env:
+        - name: GOPATH
+          value: /projects/go
+        - name: GOBIN
+          value: /projects/go/bin
+        - name: PATH
+          value: /projects/go/bin:/usr/local/go/bin:/usr/bin:/bin
+        - name: VLLM_ENDPOINT
+          value: http://vllm-neuron.neuron-inference.svc:8000/v1
+commands:
+  - id: install-opencode
+    exec:
+      label: Install OpenCode
+      component: tools
+      commandLine: |
+        curl -fsSL https://opencode.ai/install | bash
+        echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+      group:
+        kind: build
+  - id: go-build
+    exec:
+      label: Go Build
+      component: tools
+      commandLine: go build ./...
+      workingDir: ${PROJECT_SOURCE}
+      group:
+        kind: build
+  - id: go-test
+    exec:
+      label: Go Test
+      component: tools
+      commandLine: go test ./...
+      workingDir: ${PROJECT_SOURCE}
+      group:
+        kind: test
+  - id: go-run
+    exec:
+      label: Go Run
+      component: tools
+      commandLine: go run .
+      workingDir: ${PROJECT_SOURCE}
+      group:
+        kind: run
+events:
+  postStart:
+    - install-opencode
