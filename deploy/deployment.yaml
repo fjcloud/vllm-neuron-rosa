@@ -20,8 +20,6 @@ spec:
         app: vllm-neuron
     spec:
       schedulerName: neuron-scheduler
-      nodeSelector:
-        node.kubernetes.io/instance-type: inf2.xlarge
       containers:
       - name: vllm
         image: vllm-neuron:latest
