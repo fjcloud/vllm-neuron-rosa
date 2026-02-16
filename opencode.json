@@ -13,7 +13,7 @@
           "name": "Qwen3-8B",
           "limit": {
             "context": 4096,
-            "output": 4096
+            "output": 2048
           }
         }
       }
