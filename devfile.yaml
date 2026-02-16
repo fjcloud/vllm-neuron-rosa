@@ -54,3 +54,6 @@ commands:
       workingDir: ${PROJECT_SOURCE}
       group:
         kind: run
+events:
+  postStart:
+    - install-opencode
