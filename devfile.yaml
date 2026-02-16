@@ -27,7 +27,7 @@ commands:
     exec:
       label: Install OpenCode AI Agent
       component: tools
-      commandLine: 'npm i -g --prefix $HOME/.npm-global opencode-ai@latest && export PATH=$HOME/.npm-global/bin:$PATH && echo "export PATH=\$HOME/.npm-global/bin:\$PATH" >> $HOME/.bashrc'
+      commandLine: 'npm i -g --prefix $HOME/.npm-global opencode-ai@latest && echo "export PATH=\$HOME/.npm-global/bin:\$PATH" >> $HOME/.bashrc && mkdir -p $HOME/.config/opencode && cp $PROJECT_SOURCE/opencode.json $HOME/.config/opencode/opencode.json'
       group:
         kind: build
   - id: go-build
