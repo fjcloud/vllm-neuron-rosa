@@ -12,7 +12,7 @@ metadata:
 components:
   - name: tools
     container:
-      image: registry.access.redhat.com/ubi9/go-toolset:latest
+      image: registry.redhat.io/devspaces/udi-rhel9:latest
       memoryLimit: 2Gi
       mountSources: true
       env:
