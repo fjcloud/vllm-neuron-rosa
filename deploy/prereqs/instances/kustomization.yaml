@@ -6,3 +6,16 @@ resources:
   - nfd-rule.yaml
   - neuron-deviceconfig.yaml
   - devspaces-instance.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: getting-started-samples
+    namespace: openshift-operators
+    files:
+      - devspaces-samples.json
+    options:
+      labels:
+        app.kubernetes.io/part-of: che.eclipse.org
+        app.kubernetes.io/component: getting-started-samples

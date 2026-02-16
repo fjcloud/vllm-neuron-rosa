@@ -1,0 +1,12 @@
+[
+  {
+    "displayName": "Go + AI Assistant (Qwen3-8B on Neuron)",
+    "description": "Go development workspace with OpenCode AI agent connected to Qwen3-8B served by vLLM on AWS Inferentia2.",
+    "tags": ["Go", "AI", "OpenCode", "Qwen3", "Neuron"],
+    "url": "https://github.com/fjcloud/vllm-neuron-rosa",
+    "icon": {
+      "base64data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBQ0Q3IiBkPSJNMTEuMTU2IDU0LjU4OGMtLjI5Ni0uMzgyLTEuMDE1LS41MTYtMS41NzItLjI3MUw0LjkxNyA1Ny40NjVjLS41NjguMjYyLS43NDMuOTM1LS4zOTggMS4yOTFMNDAuMjkgMTAyLjhsOS45MjgtMTUuOTI3TDExLjE1NiA1NC41ODh6Ii8+PHBhdGggZmlsbD0iIzAwQUNENyIgZD0iTTgxLjU3IDQ0LjY3MUw1Ni4wNjMgMTEuNTg5Yy0uMjc3LS40OTMtLjk5LS44NjQtMS41NjMtLjg2NEg0My4zMjFjLS41NzMgMC0uNzc4LjM3MS0uNTEuODY0TDY4LjMzIDU5LjYyM2wxMy4yNC0xNC45NTJ6Ii8+PHBhdGggZmlsbD0iI0ZGRUQwMCIgZD0iTTY1LjczIDYyLjI3M0w1MC4yMTggODYuODdjLS4zMTkuNTE5LS4xIDEuMDY1LjQ2OCAxLjA2NWgxOS41ODRjLjU2OCAwIDEuMjQ3LS40OTUgMS41NC0uOTY0TDkyLjI3IDUyLjc5IDgxLjU3IDQ0LjY3MSA2NS43MyA2Mi4yNzN6Ii8+PC9zdmc+",
+      "mediatype": "image/svg+xml"
+    }
+  }
+]
