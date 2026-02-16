@@ -5,3 +5,4 @@ resources:
   - nfd-instance.yaml
   - nfd-rule.yaml
   - neuron-deviceconfig.yaml
+  - devspaces-instance.yaml

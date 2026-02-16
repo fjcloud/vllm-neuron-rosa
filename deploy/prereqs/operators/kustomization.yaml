@@ -15,3 +15,5 @@ resources:
   - neuron-operatorgroup.yaml
   - neuron-catalogsource.yaml
   - neuron-subscription.yaml
+  # Red Hat OpenShift Dev Spaces
+  - devspaces-subscription.yaml
