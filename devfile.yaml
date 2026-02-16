@@ -27,7 +27,7 @@ commands:
     exec:
       label: Install OpenCode AI Agent
       component: tools
-      commandLine: 'curl -fsSL https://opencode.ai/install | bash && echo "OpenCode installed. Run: opencode"'
+      commandLine: 'npm i -g opencode-ai@latest'
       group:
         kind: build
   - id: go-build
@@ -54,3 +54,6 @@ commands:
       workingDir: ${PROJECT_SOURCE}
       group:
         kind: run
+events:
+  postStart:
+    - install-opencode
