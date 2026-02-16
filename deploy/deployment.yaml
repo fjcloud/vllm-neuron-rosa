@@ -30,6 +30,8 @@ spec:
         - "2"
         - "--max-num-seqs"
         - "1"
+        - "--served-model-name"
+        - "qwen3-8b"
         - "--no-enable-prefix-caching"
         - "--additional-config"
         - '{"override_neuron_config": {"save_sharded_checkpoint": true}}'

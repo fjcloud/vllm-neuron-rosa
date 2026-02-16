@@ -9,7 +9,7 @@
         "apiKey": "dummy"
       },
       "models": {
-        "/cache/model": {
+        "qwen3-8b": {
           "name": "Qwen3-8B",
           "limit": {
             "context": 4096,
@@ -19,8 +19,8 @@
       }
     }
   },
-  "model": "neuron//cache/model",
-  "small_model": "neuron//cache/model",
+  "model": "neuron/qwen3-8b",
+  "small_model": "neuron/qwen3-8b",
   "disabled_providers": ["openai", "anthropic", "google", "openrouter"],
   "autoupdate": false
 }
