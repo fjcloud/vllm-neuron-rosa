@@ -27,7 +27,7 @@ commands:
     exec:
       label: Install OpenCode AI Agent
       component: tools
-      commandLine: curl -fsSL https://opencode.ai/install | bash && echo "OpenCode installed. Run: opencode"
+      commandLine: 'curl -fsSL https://opencode.ai/install | bash && echo "OpenCode installed. Run: opencode"'
       group:
         kind: build
   - id: go-build
