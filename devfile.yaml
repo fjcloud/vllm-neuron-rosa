@@ -8,7 +8,7 @@ metadata:
     - AI
     - OpenCode
   icon: https://raw.githubusercontent.com/devfile-samples/devfile-stack-icons/main/golang.svg
-  version: 1.0.0
+  version: 1.1.0
 components:
   - name: tools
     container:
@@ -20,18 +20,14 @@ components:
           value: /projects/go
         - name: GOBIN
           value: /projects/go/bin
-        - name: PATH
-          value: /projects/go/bin:/usr/local/go/bin:/usr/bin:/bin
         - name: VLLM_ENDPOINT
           value: http://vllm-neuron.neuron-inference.svc:8000/v1
 commands:
   - id: install-opencode
     exec:
-      label: Install OpenCode
+      label: Install OpenCode AI Agent
       component: tools
-      commandLine: |
-        curl -fsSL https://opencode.ai/install | bash
-        echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+      commandLine: curl -fsSL https://opencode.ai/install | bash && echo "OpenCode installed. Run: opencode"
       group:
         kind: build
   - id: go-build
@@ -58,6 +54,3 @@ commands:
       workingDir: ${PROJECT_SOURCE}
       group:
         kind: run
-events:
-  postStart:
-    - install-opencode
